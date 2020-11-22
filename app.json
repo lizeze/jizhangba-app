@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/me/me",
+    "pages/index/index",
+    "pages/logs/logs"
+
+  ],
+
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#f09496",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/image/pen-black.png",
+        "selectedIconPath": "/image/pen.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "iconPath": "/image/list-black.png",
+        "selectedIconPath": "/image/list.png",
+        "text": "详细"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "/image/me-black.png",
+        "selectedIconPath": "/image/me.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "l-button": "../../dist/button/index",
+    "l-input": "../../dist/input/index",
+    "i-panel": "../../dist/panel/index",
+    "l-grid": "../../dist/grid/index",
+    "l-grid-item": "../../dist/grid-item/index",
+    "l-icon": "../../dist/icon/index",
+    "l-toast": "../../dist/toast/index",
+    "l-icon-font": "../../component/iconfont/index",
+    "l-avatar": "../../dist/avatar/index"
+  }
+}

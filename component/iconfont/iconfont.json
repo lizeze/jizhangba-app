@@ -1,0 +1,65 @@
+{
+  "id": "2220334",
+  "name": "jizhangba",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11865256",
+      "name": "购物",
+      "font_class": "gouwu",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "162214",
+      "name": "教育",
+      "font_class": "jiaoyu",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "332228",
+      "name": "房租",
+      "font_class": "fangzu",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "4624048",
+      "name": "人际关系",
+      "font_class": "shejiao",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "6517456",
+      "name": "名称-水电",
+      "font_class": "shuidian",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "7991692",
+      "name": "娱乐",
+      "font_class": "yule",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "8572840",
+      "name": "交通",
+      "font_class": "jiaotong",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "9666702",
+      "name": "生活费",
+      "font_class": "shenghuofei",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    }
+  ]
+}

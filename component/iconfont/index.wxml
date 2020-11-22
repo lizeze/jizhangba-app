@@ -1,0 +1,7 @@
+<!--<svg class="icon" aria-hidden="true">-->
+<!--    <use xlink:href="#{{icon}}"></use>-->
+<!--</svg>-->
+
+
+
+<i class="iconfont icon-{{icon}}"></i>
