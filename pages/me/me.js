@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
         hasLogin: app.globalData.hasLogin
 
     },
@@ -17,27 +17,26 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(app.globalData.userInfo);
+        // wx.getSetting({
+        //     success(res) {
+        //         if (res.authSetting['scope.userInfo']) {
+        //             // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+        //             wx.getUserInfo({
+        //                 success: function (res) {
+        //                     console.log(res.userInfo)
+        //                 }
+        //             })
+        //         }
+        //     }
+        // })
     },
-    login: function () {
-        wx.login({
-            success(res) {
-                if (res.code) {
-                    //发起网络请求
-                    util.httpRequest({
-                        url: 'http://192.168.0.103:8080/api/user/login/' + res.code
-                    }).then(data=>{
-                        console.log(data);
-                    })
-
-                } else {
-                    console.log('登录失败！' + res.errMsg)
-                }
-            }
-        })
+    login: function (e) {
+       
+       
 
     }, loginSuccess: function (res) {
-        console.log(res.detail);
+      
+        // console.log(res.detail);
     },
     loginFail: function (res) {
         console.log(res);

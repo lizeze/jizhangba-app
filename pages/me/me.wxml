@@ -1,2 +1,6 @@
-<button  bindtap="login" wx:if="{{hasLogin==false}}">登录</button>
-<l-avatar open-data="{{['userAvatarUrl','userNickName']}}"  wx:if="{{hasLogin}}"/>
+<!-- <button  bindtap="login" wx:if="{{hasLogin==false}}">登录</button>
+<l-avatar open-data="{{['userAvatarUrl','userNickName']}}"  wx:if="{{hasLogin}}"/> -->
+<open-data type="userAvatarUrl"></open-data>
+<open-data type="userNickName"></open-data>
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="login">授权登录</button>
+<view wx:else>请升级微信版本</view>
