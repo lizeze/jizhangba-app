@@ -1,4 +1,4 @@
-let apiUrl = 'http://127.0.0.1:3000/'
+let apiUrl = 'https://xx996.cn/auth/api/'
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -25,15 +25,30 @@ const showToast = (options) => {
     }
   })
 }
-const httpRequest = (options) => {
-
+const makeToken = (options)=>{
   return new Promise((resolve, reject) => {
     wx.request({
       url: options.url,
       method: options.method ? options.method : 'get',
       data: options.data,
       header: {
-        'content-type': 'application/json' // 默认值
+        'content-type': 'application/json',// 默认值,
+      },
+      success: function (res) {
+        resolve(res.data)
+      }
+    })
+  })
+}
+const httpRequest = (options) => {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: options.url,
+      method: options.method ? options.method : 'get',
+      data: options.data,
+      header: {
+        'content-type': 'application/json' ,// 默认值,
+        "authorization":getCurrentUser().accessToken
       },
       success: function(res) {
         resolve(res.data)
@@ -56,7 +71,7 @@ const getLoginInfo = () => {
               if (user.authSetting['scope.userInfo']) {
                 wx.getUserInfo({
                   success: function(res1) {
-                    httpRequest({
+                    makeToken({
                       url: apiUrl + 'decrypt',
                       method: 'post',
                       data: {
@@ -66,6 +81,10 @@ const getLoginInfo = () => {
                       }
                     }).then(data => {
                       result.data = data;
+                      wx.setStorage({
+                        key: "accessToken",
+                        data: JSON.stringify(result.data)
+                      })
                       resolve(result)
                     })
                   }
@@ -74,7 +93,8 @@ const getLoginInfo = () => {
                 result.error = '未授权'
                 resolve(result)
               }
-            }, fail(){
+            },
+            fail() {
               console.log('登录失败')
             }
           })
@@ -84,7 +104,8 @@ const getLoginInfo = () => {
           result.error = "登录失败"
           resolve(result)
         }
-      },fail(){
+      },
+      fail() {
         result.error = "登录失败"
         resolve(result)
       }
@@ -93,9 +114,22 @@ const getLoginInfo = () => {
   })
 
 }
+
+const getCurrentUser = () => {
+  let accessToken = wx.getStorageSync('accessToken')
+  if (!accessToken) {
+    showToast("请重新登录")
+    wx.navigateTo({
+      url: '../me/me',
+    })
+  }
+  return JSON.parse(accessToken)
+
+}
 module.exports = {
   formatTime: formatTime,
   showToast,
   httpRequest,
-  getLoginInfo
+  getLoginInfo,
+  getCurrentUser
 }

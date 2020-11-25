@@ -13,14 +13,14 @@
       </view>
     </picker>
   </view>
-  <l-grid l-class="grid" show-border="{{true}}" bind:lintap="lintap" >
+  <!-- <l-grid l-class="grid" show-border="{{true}}" bind:lintap="lintap" >
     <l-grid-item
       wx:for="{{grids1}}"  wx:key="{{item.icon}}"  key="{{item.icon}}"  cell="{{item}}"  class="{{billType==item.text?'grid-list':''}}" slot="{{item.icon}}" >
        <l-icon-font icon="{{item.icon}}"></l-icon-font>
         <view class="text">{{item.text}}</view>
     </l-grid-item>
    </l-grid>
- 
+  -->
 </view>
 <view class="footer">
 <button bindtap="saveData">确认</button>
