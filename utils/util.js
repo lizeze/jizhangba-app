@@ -1,4 +1,6 @@
 let apiUrl = 'https://xx996.cn/auth/api/'
+apiUrl = 'http://127.0.0.1:3000/api/'
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -25,14 +27,14 @@ const showToast = (options) => {
     }
   })
 }
-const makeToken = (options)=>{
+const makeToken = (options) => {
   return new Promise((resolve, reject) => {
     wx.request({
       url: options.url,
       method: options.method ? options.method : 'get',
       data: options.data,
       header: {
-        'content-type': 'application/json',// 默认值,
+        'content-type': 'application/json', // 默认值,
       },
       success: function (res) {
         resolve(res.data)
@@ -47,12 +49,27 @@ const httpRequest = (options) => {
       method: options.method ? options.method : 'get',
       data: options.data,
       header: {
-        'content-type': 'application/json' ,// 默认值,
-        "authorization":getCurrentUser().accessToken
+        'content-type': 'application/json', // 默认值,
+        "authorization": getCurrentUser().accessToken
       },
-      success: function(res) {
-        resolve(res.data)
+
+      complete: function (data) {
+
+        if (data.statusCode != 200) {
+          showToast({
+            title: '失败',
+            icon: 'error',
+            callback:()=>{
+              throw new Error('网络超时');
+            }
+          })
+        }else{
+          resolve(data.data)
+
+        }
+
       }
+      
     })
   })
 }
@@ -70,7 +87,7 @@ const getLoginInfo = () => {
             success(user) {
               if (user.authSetting['scope.userInfo']) {
                 wx.getUserInfo({
-                  success: function(res1) {
+                  success: function (res1) {
                     makeToken({
                       url: apiUrl + 'decrypt',
                       method: 'post',

@@ -42,23 +42,23 @@ Page({
       icon: 'gouwu'
     }]
   },
-  bindPickerChange: function(e) {
+  bindPickerChange: function (e) {
     this.setData({
       billTime: e.detail.value
     })
   },
-  changeCurrentType: function(e) {
+  changeCurrentType: function (e) {
     this.setData({
       type: e.currentTarget.dataset['type']
     })
   },
-  lintap: function(e) {
+  lintap: function (e) {
     this.setData({
       billType: e.detail.cell.text
     })
 
   },
-  handleAmountChange: function(e) {
+  handleAmountChange: function (e) {
     let value = e.detail.value;
 
     if (isNaN(value)) {
@@ -72,12 +72,12 @@ Page({
       billAmount: value
     })
   },
-  handleRemarkChange: function(e) {
+  handleRemarkChange: function (e) {
     this.setData({
       billRemark: e.detail.value
     })
   },
-  saveData: function() {
+  saveData: async function () {
     if (!this.data.billAmount) {
       util.showToast({
         title: '金额不能为空',
@@ -98,10 +98,23 @@ Page({
       billTime,
       userId
     };
-    util.httpRequest({
-      url: 'https://xx996.cn/jzb/api/bill/',
+    await util.httpRequest({
+      // url: 'http://xx996.cn/jzb/api/bill/',
+      url: 'http://127.0.0.1:8080/api/bill/',
+
       method: 'post',
       data: mod
+    })
+    util.showToast({
+      title: '保存成功',
+      callback:   () =>{
+        this.setData({
+          billRemark: '',
+          billAmount: '',
+          billTime: util.formatTime(new Date),
+
+        })
+      }
     })
   }
 })
