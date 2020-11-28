@@ -1,7 +1,60 @@
-<view>
-    <view>
-    
-        
-    
+<view class="bill-container">
+    <view class="bill-date">
+
+        2020年11月账单
+    </view>
+
+     <view class="all">
+         <view class="title">账单总额￥</view> 
+         <view class="money">111.29</view> 
+
+
+     </view>
+
+    <view class="bill-warpper">
+
+        <view class="bill-item">
+            <view class="date">11月6日(1笔)</view>
+            <view class="content">
+
+                <view class="title">买单吧-餐饮优惠券</view>
+                <view class="amount">￥13.00</view>
+
+            </view>
+
+        </view>
+
+        <view class="bill-item">
+            <view class="date">11月6日(1笔)</view>
+            <view class="content">
+
+                <view class="title">买单吧-餐饮优惠券</view>
+                <view class="amount">￥13.00</view>
+
+            </view>
+
+        </view>
+        <view class="bill-item">
+            <view class="date">11月6日(1笔)</view>
+            <view class="content">
+
+                <view class="title">买单吧-餐饮优惠券</view>
+                <view class="amount">￥13.00</view>
+
+            </view>
+
+        </view>
+        <view class="bill-item">
+            <view class="date">11月6日(1笔)</view>
+            <view class="content">
+
+                <view class="title">买单吧-餐饮优惠券</view>
+                <view class="amount">￥13.00</view>
+
+            </view>
+
+        </view>
+
+
     </view>
 </view>

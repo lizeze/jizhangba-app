@@ -1,8 +1,66 @@
-.log-list {
+ .bill-container {
+   height: 100vh;
+   background: #F5F6F8;
+
+ }
+
+ .bill-warpper {
+   margin: 10px;
+ }
+ .bill-container .all{
+  color: #B5B5B5;
+  background: #ffffff;
+  padding: 10px;
   display: flex;
-  flex-direction: column;
-  padding: 40rpx;
-}
-.log-item {
-  margin: 10rpx;
-}
+  flex-direction: row;
+  align-items: center;
+
+  justify-content: center;
+ }
+
+ .bill-container .all .title{
+ font-size: 12px;
+  color: #7A7A7A;
+ }
+ .bill-container .all .money{
+  font-size: 22px;
+   color: #333333;
+  }
+ .bill-container .bill-date {
+   border-radius: 4px;
+   background: #E4E3F9;
+   border: 1px solid #ffffff;
+   padding: 10px;
+   text-align: center;
+ }
+
+ .bill-item {
+   padding: 10px;
+   border: 2px solid #ffffff;
+   border-radius: 6px;
+   background: #ffffff;
+   margin: 10px 0px;
+ }
+
+ .bill-item .date {
+
+   color: #B5B5B5;
+   padding: 3px;
+   font-size: 12px;
+   border-bottom: 1px solid #EFEFEF;
+ }
+
+ .bill-item .content {
+   font-size: 14px;
+   color: #2E2E2E;
+   padding: 3px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   text-align: center;
+   justify-content: space-between;
+ }
+
+ .bill-item .content .title {
+   text-align: center;
+ }
