@@ -13,48 +13,20 @@
 
     <view class="bill-warpper">
 
-        <view class="bill-item">
-            <view class="date">11月6日(1笔)</view>
+        <view class="bill-item" wx:for="{{list}}">
+            <view class="date">{{item.bill_time}}</view>
             <view class="content">
 
-                <view class="title">买单吧-餐饮优惠券</view>
-                <view class="amount">￥13.00</view>
+                <view class="title">{{item.bill_remark?item.bill_remark:item.bill_type}}</view>
+                <view class="amount">￥{{item.bill_amount}}</view>
 
             </view>
 
         </view>
 
-        <view class="bill-item">
-            <view class="date">11月6日(1笔)</view>
-            <view class="content">
-
-                <view class="title">买单吧-餐饮优惠券</view>
-                <view class="amount">￥13.00</view>
-
-            </view>
-
-        </view>
-        <view class="bill-item">
-            <view class="date">11月6日(1笔)</view>
-            <view class="content">
-
-                <view class="title">买单吧-餐饮优惠券</view>
-                <view class="amount">￥13.00</view>
-
-            </view>
-
-        </view>
-        <view class="bill-item">
-            <view class="date">11月6日(1笔)</view>
-            <view class="content">
-
-                <view class="title">买单吧-餐饮优惠券</view>
-                <view class="amount">￥13.00</view>
-
-            </view>
-
-        </view>
-
+        
+        
+        
 
     </view>
 </view>

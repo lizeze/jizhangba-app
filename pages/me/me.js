@@ -17,6 +17,7 @@ Page({
    */
   onLoad: function(options) {
     let _this=this
+      util.getLoginInfo();
     wx.getSetting({
         success(res) {
             if (res.authSetting['scope.userInfo']) {
@@ -35,7 +36,7 @@ Page({
   },
   login: async function(e) {
     let result = await util.getLoginInfo()
-    if (result.data) {
+    if (result) {
       console.log(222)
       this.setData({
         hasLogin: true

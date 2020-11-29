@@ -1,6 +1,13 @@
-let apiUrl = 'https://xx996.cn/auth/api/'
-apiUrl = 'http://127.0.0.1:3000/api/'
+let apiUrl = 'https://xx996.cn/'
+apiUrl = 'http://192.168.0.100:3000/'
+let unifyResult = function (status, data, mess) {
+  return {
+    data: data || null,
+    status: status || true,
+    mess: mess || ''
 
+  }
+}
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -29,8 +36,9 @@ const showToast = (options) => {
 }
 const makeToken = (options) => {
   return new Promise((resolve, reject) => {
+    options.data['v']=new Date().getTime()
     wx.request({
-      url: options.url,
+      url: options.url+'?v='+new Date().getTime(),
       method: options.method ? options.method : 'get',
       data: options.data,
       header: {
@@ -45,7 +53,7 @@ const makeToken = (options) => {
 const httpRequest = (options) => {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: options.url,
+      url: apiUrl + options.url+'?v='+new Date().getTime(),
       method: options.method ? options.method : 'get',
       data: options.data,
       header: {
@@ -59,83 +67,103 @@ const httpRequest = (options) => {
           showToast({
             title: '失败',
             icon: 'error',
-            callback:()=>{
+            callback: () => {
               throw new Error('网络超时');
             }
           })
-        }else{
+        } else {
           resolve(data.data)
 
         }
 
       }
-      
+
     })
   })
 }
-const getLoginInfo = () => {
-  let result = {
-    error: '',
-    data: null
-  }
+
+const checkSession = () => {
+
   return new Promise((resolve, reject) => {
-    wx.login({
-      success(res) {
-        if (res.code) {
-          //发起网络请求
-          wx.getSetting({
-            success(user) {
-              if (user.authSetting['scope.userInfo']) {
-                wx.getUserInfo({
-                  success: function (res1) {
-                    makeToken({
-                      url: apiUrl + 'decrypt',
-                      method: 'post',
-                      data: {
-                        encryptedData: res1.encryptedData,
-                        iv: res1.iv,
-                        jsCode: res.code
-                      }
-                    }).then(data => {
-                      result.data = data;
-                      wx.setStorage({
-                        key: "accessToken",
-                        data: JSON.stringify(result.data)
+    wx.checkSession({
+      success() {
+        resolve(unifyResult())
+
+      },
+      fail() {
+        // session_key 已经失效，需要重新执行登录流程
+        resolve(unifyResult(false))
+      }
+    })
+  })
+
+}
+const getLoginInfo = async () => {
+
+  let result={
+    data:'',
+    error:''
+  }
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success(res) {
+          if (res.code) {
+            console.log(res.code, 'code')
+            //发起网络请求
+            wx.getSetting({
+              success(user) {
+                if (user.authSetting['scope.userInfo']) {
+                  wx.getUserInfo({
+                    success: function (res1) {
+                      makeToken({
+                        url: apiUrl + 'api/wx/decrypt',
+                        method: 'post',
+                        data: {
+                          encryptedData: res1.encryptedData,
+                          iv: res1.iv,
+                          jsCode: res.code
+                        }
+                      }).then(data => {
+                        result.data = data;
+                        wx.setStorage({
+                          key: "accessToken",
+                          data: JSON.stringify(result.data)
+                        })
+                        resolve(result)
                       })
-                      resolve(result)
-                    })
-                  }
-                })
-              } else {
-                result.error = '未授权'
-                resolve(result)
+                    }
+                  })
+                } else {
+                  result.error = '未授权'
+                  resolve(result)
+                }
+              },
+              fail() {
+                console.log('登录失败')
               }
-            },
-            fail() {
-              console.log('登录失败')
-            }
-          })
+            })
 
 
-        } else {
+          } else {
+            result.error = "登录失败"
+            resolve(result)
+          }
+        },
+        fail() {
           result.error = "登录失败"
           resolve(result)
         }
-      },
-      fail() {
-        result.error = "登录失败"
-        resolve(result)
-      }
-    })
+      })
 
-  })
+    })
+  
 
 }
 
 const getCurrentUser = () => {
   let accessToken = wx.getStorageSync('accessToken')
   if (!accessToken) {
-    showToast("请重新登录")
+    // showToast("请重新登录")
     wx.navigateTo({
       url: '../me/me',
     })
@@ -148,5 +176,6 @@ module.exports = {
   showToast,
   httpRequest,
   getLoginInfo,
-  getCurrentUser
+  getCurrentUser,
+  checkSession
 }

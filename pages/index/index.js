@@ -100,7 +100,7 @@ Page({
     };
     await util.httpRequest({
       // url: 'http://xx996.cn/jzb/api/bill/',
-      url: 'http://127.0.0.1:8080/api/bill/',
+      url: 'jzb/api/bill/',
 
       method: 'post',
       data: mod
