@@ -1,5 +1,6 @@
 let apiUrl = 'https://xx996.cn/'
-apiUrl = 'http://192.168.0.100:3000/'
+apiUrl = 'http://localhost:8086/auth/'
+apiUrl = 'http://192.168.0.104:3000/'
 let unifyResult = function (status, data, mess) {
   return {
     data: data || null,
@@ -36,7 +37,7 @@ const showToast = (options) => {
 }
 const makeToken = (options) => {
   return new Promise((resolve, reject) => {
-    options.data['v']=new Date().getTime()
+    // options.data['v']=new Date().getTime()
     wx.request({
       url: options.url+'?v='+new Date().getTime(),
       method: options.method ? options.method : 'get',
@@ -117,11 +118,13 @@ const getLoginInfo = async () => {
                     success: function (res1) {
                       makeToken({
                         url: apiUrl + 'api/wx/decrypt',
-                        method: 'post',
-                        data: {
-                          encryptedData: res1.encryptedData,
-                          iv: res1.iv,
-                          jsCode: res.code
+                        // url: apiUrl + 'api/a',
+
+                        method: 'POST',
+                         data: {
+                           encryptedData: res1.encryptedData,
+                           iv: res1.iv,
+                           jsCode: res.code
                         }
                       }).then(data => {
                         result.data = data;
