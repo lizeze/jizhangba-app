@@ -1,6 +1,6 @@
 let apiUrl = 'https://xx996.cn/'
 apiUrl = 'http://localhost:8086/auth/'
-apiUrl = 'http://192.168.0.104:3000/'
+apiUrl = 'http://127.0.0.1:3000/'
 let unifyResult = function (status, data, mess) {
   return {
     data: data || null,
@@ -39,7 +39,7 @@ const makeToken = (options) => {
   return new Promise((resolve, reject) => {
     // options.data['v']=new Date().getTime()
     wx.request({
-      url: options.url+'?v='+new Date().getTime(),
+      url: options.url,
       method: options.method ? options.method : 'get',
       data: options.data,
       header: {
@@ -59,7 +59,7 @@ const httpRequest = (options) => {
       data: options.data,
       header: {
         'content-type': 'application/json', // 默认值,
-        "authorization": getCurrentUser().accessToken
+        "accessToken": getCurrentUser()
       },
 
       complete: function (data) {
@@ -130,7 +130,7 @@ const getLoginInfo = async () => {
                         result.data = data;
                         wx.setStorage({
                           key: "accessToken",
-                          data: JSON.stringify(result.data)
+                          data: result.data
                         })
                         resolve(result)
                       })
@@ -171,7 +171,7 @@ const getCurrentUser = () => {
       url: '../me/me',
     })
   }
-  return JSON.parse(accessToken)
+  return accessToken
 
 }
 module.exports = {

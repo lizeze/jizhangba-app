@@ -95,12 +95,11 @@ Page({
       billRemark,
       billAmount,
       billType,
-      billTime,
-      userId
+      billTime
     };
     await util.httpRequest({
       // url: 'http://xx996.cn/jzb/api/bill/',
-      url: 'jzb/api/bill/',
+      url: 'api/bill/',
 
       method: 'post',
       data: mod
