@@ -52,6 +52,8 @@
     "l-avatar": "../../dist/avatar/index",
     "l-icon-font":"./component/iconfont/index",
     "l-list":"../../dist/list/index",
-    "l-card":"../../dist/card/index"
+    "l-card":"../../dist/card/index",
+    "l-message":"../../dist/message/index"
+
   }
 }

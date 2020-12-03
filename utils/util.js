@@ -54,7 +54,7 @@ const makeToken = (options) => {
 const httpRequest = (options) => {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: apiUrl + options.url+'?v='+new Date().getTime(),
+      url: apiUrl + options.url + '?v=' + new Date().getTime(),
       method: options.method ? options.method : 'get',
       data: options.data,
       header: {
@@ -101,65 +101,65 @@ const checkSession = () => {
 }
 const getLoginInfo = async () => {
 
-  let result={
-    data:'',
-    error:''
+  let result = {
+    data: '',
+    error: ''
   }
-    return new Promise((resolve, reject) => {
-      wx.login({
-        success(res) {
-          if (res.code) {
-            console.log(res.code, 'code')
-            //发起网络请求
-            wx.getSetting({
-              success(user) {
-                if (user.authSetting['scope.userInfo']) {
-                  wx.getUserInfo({
-                    success: function (res1) {
-                      makeToken({
-                        url: apiUrl + 'api/wx/decrypt',
-                        // url: apiUrl + 'api/a',
+  return new Promise((resolve, reject) => {
+    wx.login({
+      success(res) {
+        if (res.code) {
+          console.log(res.code, 'code')
+          //发起网络请求
+          wx.getSetting({
+            success(user) {
+              if (user.authSetting['scope.userInfo']) {
+                wx.getUserInfo({
+                  success: function (res1) {
+                    makeToken({
+                      url: apiUrl + 'api/wx/decrypt',
+                      // url: apiUrl + 'api/a',
 
-                        method: 'POST',
-                         data: {
-                           encryptedData: res1.encryptedData,
-                           iv: res1.iv,
-                           jsCode: res.code
-                        }
-                      }).then(data => {
-                        result.data = data;
-                        wx.setStorage({
-                          key: "accessToken",
-                          data: result.data
-                        })
-                        resolve(result)
+                      method: 'POST',
+                      data: {
+                        encryptedData: res1.encryptedData,
+                        iv: res1.iv,
+                        jsCode: res.code
+                      }
+                    }).then(data => {
+                      result.data = data;
+                      wx.setStorage({
+                        key: "accessToken",
+                        data: result.data
                       })
-                    }
-                  })
-                } else {
-                  result.error = '未授权'
-                  resolve(result)
-                }
-              },
-              fail() {
-                console.log('登录失败')
+                      resolve(result)
+                    })
+                  }
+                })
+              } else {
+                result.error = '未授权'
+                resolve(result)
               }
-            })
+            },
+            fail() {
+              console.log('登录失败')
+            }
+          })
 
 
-          } else {
-            result.error = "登录失败"
-            resolve(result)
-          }
-        },
-        fail() {
+        } else {
           result.error = "登录失败"
           resolve(result)
         }
-      })
-
+      },
+      fail() {
+        result.error = "登录失败"
+        resolve(result)
+      }
     })
-  
+
+  })
+
 
 }
 
@@ -174,11 +174,29 @@ const getCurrentUser = () => {
   return accessToken
 
 }
+
+const showMessage = (options) => {
+  if (typeof options === 'object') {
+    wx.lin.showMessage({
+      type: options.type,
+      content: options.message
+    })
+  } else {
+    wx.lin.showMessage({
+      type: "success",
+      content: options
+    })
+
+  }
+
+}
+
 module.exports = {
   formatTime: formatTime,
   showToast,
   httpRequest,
   getLoginInfo,
   getCurrentUser,
-  checkSession
+  checkSession,
+  showMessage
 }

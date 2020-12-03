@@ -25,5 +25,5 @@
 <view class="footer">
 <button bindtap="saveData">确认</button>
 </view>
-
+<l-message />
 <l-toast />

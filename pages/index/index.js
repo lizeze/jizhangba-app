@@ -4,10 +4,11 @@ const app = getApp()
 var util = require('../../utils/util.js');
 Page({
   data: {
+    message: '',
     billAmount: '',
     billTime: util.formatTime(new Date),
     billRemark: '',
-    billType: '',
+    billType: '社交',
     userId: '',
     billAmountRules: {
       required: true,
@@ -104,16 +105,13 @@ Page({
       method: 'post',
       data: mod
     })
-    util.showToast({
-      title: '保存成功',
-      callback:   () =>{
-        this.setData({
-          billRemark: '',
-          billAmount: '',
-          billTime: util.formatTime(new Date),
+    this.setData({
 
-        })
-      }
+      billRemark: '',
+      billAmount: '',
+      billTime: util.formatTime(new Date)
     })
+      util.showMessage("保存成功")
+
   }
 })
