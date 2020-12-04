@@ -8,7 +8,8 @@ Page({
     billAmount: '',
     billTime: util.formatTime(new Date),
     billRemark: '',
-    billType: '社交',
+    billType: 'out',
+    billClass:'社交',
     userId: '',
     billAmountRules: {
       required: true,
@@ -16,7 +17,6 @@ Page({
       icon: 'error'
     },
 
-    type: 'out',
     grids1: [{
       text: '社交',
       icon: 'shejiao'
@@ -50,12 +50,12 @@ Page({
   },
   changeCurrentType: function (e) {
     this.setData({
-      type: e.currentTarget.dataset['type']
+      billType: e.currentTarget.dataset['type']
     })
   },
   lintap: function (e) {
     this.setData({
-      billType: e.detail.cell.text
+      billClass: e.detail.cell.text
     })
 
   },
@@ -91,12 +91,13 @@ Page({
     const billRemark = this.data.billRemark;
     const billType = this.data.billType;
     const billTime = this.data.billTime;
-    const userId = util.getCurrentUser().userId
+    const billClass=this.data.billClass
     let mod = {
       billRemark,
       billAmount,
       billType,
-      billTime
+      billTime,
+      billClass
     };
     await util.httpRequest({
       // url: 'http://xx996.cn/jzb/api/bill/',

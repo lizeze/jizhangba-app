@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/index/index"
+,
     "pages/me/me"
 ,
-    "pages/logs/logs",
+    "pages/logs/logs"
 
-    "pages/index/index"
 
   ],
 
@@ -53,7 +54,9 @@
     "l-icon-font":"./component/iconfont/index",
     "l-list":"../../dist/list/index",
     "l-card":"../../dist/card/index",
-    "l-message":"../../dist/message/index"
+    "l-message":"../../dist/message/index",
+    "l-sticky":"../../dist/sticky/index",
+    "l-sticky-item":"../../dist/sticky-item/index"
 
   }
 }

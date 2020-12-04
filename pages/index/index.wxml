@@ -1,7 +1,7 @@
 <view class="container">
   <view class="header">
-    <button  data-type="out" class="{{type=='out'?'active':''}}" bindtap="changeCurrentType">支出</button>
-    <button  data-type="in" class="{{type=='in'?'active':''}}" bindtap="changeCurrentType">收入</button>
+    <button  data-type="out" class="{{billType=='out'?'active':''}}" bindtap="changeCurrentType">支出</button>
+    <button  data-type="in" class="{{billType=='in'?'active':''}}" bindtap="changeCurrentType">收入</button>
   </view>
   <view class="billform">
       <l-input   rules="{{billAmountRules}}"  value="{{billAmount}}"  placeholder="请输入金额"  bind:linblur='handleAmountChange'  />
@@ -15,7 +15,7 @@
   </view>
   <l-grid l-class="grid" show-border="{{true}}" bind:lintap="lintap" >
     <l-grid-item
-      wx:for="{{grids1}}"  wx:key="{{item.icon}}"  key="{{item.icon}}"  cell="{{item}}"  class="{{billType==item.text?'grid-list':''}}" slot="{{item.icon}}" >
+      wx:for="{{grids1}}"  wx:key="{{item.icon}}"  key="{{item.icon}}"  cell="{{item}}"  class="{{billClass==item.text?'grid-list':''}}" slot="{{item.icon}}" >
        <l-icon-font icon="{{item.icon}}"></l-icon-font>
         <view class="text">{{item.text}}</view>
     </l-grid-item>
