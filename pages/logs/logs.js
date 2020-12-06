@@ -3,13 +3,13 @@
 
  Page({
    data: {
-     list: [],
-     scrollTop: undefined
+     list: {},
+     scrollTop: undefined,
+     inAmount:'',
+     outAmount:''
    },
    onPageScroll(res) {
-     this.setData({
-       scrollTop: res.scrollTop
-     })
+    wx.lin.setScrollTop(res.scrollTop)
    },
    onShow: async function () {
 
@@ -17,7 +17,7 @@
    },
    onLoad: async function () {
 
-     this.initData()
+    //  this.initData()
 
    },
    initData: async function () {
@@ -26,9 +26,22 @@
      let result = await util.httpRequest({
        url: 'api/bill/' + '/' + year + "/" + month
      })
-     console.log(result)
+      let sumAmount=0;
+       let inAmount=0;
+       let outAmount=0
+      result.data.map(item=>{
+ 
+          if(item.billType=='out'){
+            outAmount+=parseFloat(item.billAmount)
+          }else{
+            inAmount+=parseFloat(item.billAmount)
+          }
+      })
      this.setData({
-       list: result
+       list: result,
+       inAmount,
+       outAmount
      })
+     wx.lin.flushSticky()
    }
  })

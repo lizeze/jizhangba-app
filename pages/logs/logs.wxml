@@ -1,40 +1,40 @@
 <wxs src="../../utils/filter.wxs" module="filter" />
 
 <view class="bill-container">
-    <view class="bill-date">
+    <!-- <view class="bill-date">
 
         2020年11月账单
-    </view>
+    </view> -->
 
-    <view class="all">
-        <view class="title">账单总额￥</view>
-        <view class="money">111.29</view>
+    <l-sticky scrollTop="{{scrollTop}}">
+        <l-sticky-item>
+            <view slot="header">
+                <view class="all">
 
-
-    </view>
-
-    <view class="bill-warpper">
-
-        <l-sticky scrollTop="{{scrollTop}}">
-            <l-sticky-item wx:for="{{list}}">
-                <view slot="header">{{filter.format(item.billTime,'YY-MM-DD')}}</view>
-                <view slot="body">
-                    <view class="bill-item">
-                        <view class="date"></view>
-                        <view class="content">
-
-                            <view class="title">{{item.billRemark?item.billRemark:item.billClass}}</view>
-                            <view class="amount">￥{{item.billAmount}}</view>
-
-                        </view>
+                    <view>
+                        <view class="title">收入</view>
+                        <view class="money">{{inAmount}}</view>
                     </view>
+                    <view class="out">
+                        <view class="title">支出</view>
+                        <view class="money">{{outAmount}}</view>
+                    </view>
+                </view>
+                <view class="all">
 
                 </view>
-            </l-sticky-item>
-        </l-sticky>
-
-
-
-
-    </view>
+            </view>
+            <view slot="body">
+                <view class="bill-warpper">
+                    <view class="bill-item" wx:for="{{list.data}}">
+                        <view class="date">{{item.billRemark?item.billRemark:item.billClass}}</view>
+                        <view class="content">
+                            <view class="title"> {{filter.format(item.billTime,'YY-MM-DD')}}</view>
+                            <view class="amount {{item.billType=='out'?'out':'in'}}">￥{{item.billAmount}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </l-sticky-item>
+    </l-sticky>
 </view>
