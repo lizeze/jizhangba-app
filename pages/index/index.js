@@ -3,6 +3,17 @@
 const app = getApp()
 var util = require('../../utils/util.js');
 Page({
+  onShareAppMessage: function (res) {
+    console.log(res)
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '记一笔',
+      path: '/pages/index/index?id=123'
+    }
+  },
   data: {
     message: '',
     billAmount: '',
@@ -41,6 +52,12 @@ Page({
     }, {
       text: '购物',
       icon: 'gouwu'
+    }, {
+      text: '理财',
+      icon: 'licai'
+    }, {
+      text: '工资',
+      icon: 'gongzi'
     }]
   },
   bindPickerChange: function (e) {
@@ -78,6 +95,7 @@ Page({
       billRemark: e.detail.value
     })
   },
+ 
   saveData: async function () {
     if (!this.data.billAmount) {
       util.showToast({

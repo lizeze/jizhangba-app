@@ -8,7 +8,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hasLogin: false
+    hasLogin: false,
+    grids1: [{
+      text: '社交',
+      icon: 'shejiao'
+    }, {
+      text: '水电费',
+      icon: 'shuidian'
+    }, {
+      text: '房租',
+      icon: 'fangzu'
+    }, {
+      text: '教育',
+      icon: 'jiaoyu'
+    }, {
+      text: '娱乐',
+      icon: 'yule'
+    }, {
+      text: '交通',
+      icon: 'jiaotong'
+    }, {
+      text: '生活费',
+      icon: 'shenghuofei'
+    }, {
+      text: '购物',
+      icon: 'gouwu'
+    }]
 
   },
 

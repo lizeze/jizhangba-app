@@ -37,10 +37,11 @@
             inAmount+=parseFloat(item.billAmount)
           }
       })
+
      this.setData({
        list: result,
-       inAmount,
-       outAmount
+       inAmount:inAmount.toFixed(2),
+       outAmount:outAmount.toFixed(2)
      })
      wx.lin.flushSticky()
    }

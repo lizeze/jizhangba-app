@@ -30,7 +30,7 @@
                         <view class="date">{{item.billRemark?item.billRemark:item.billClass}}</view>
                         <view class="content">
                             <view class="title"> {{filter.format(item.billTime,'YY-MM-DD')}}</view>
-                            <view class="amount {{item.billType=='out'?'out':'in'}}">￥{{item.billAmount}}</view>
+                            <view class="amount {{item.billType=='out'?'out':'in'}}">￥{{filter.toFixed(item.billAmount)}}</view>
                         </view>
                     </view>
                 </view>

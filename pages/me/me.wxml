@@ -1,4 +1,20 @@
 <!-- <button  bindtap="login" wx:if="{{hasLogin==false}}">登录</button>
 <l-avatar open-data="{{['userAvatarUrl','userNickName']}}"  wx:if="{{hasLogin}}"/> -->
-<l-avatar   wx:if="{{hasLogin}}" open-data="{{['userAvatarUrl','userNickName']}}" />
-<button wx:if="{{canIUse}}"  wx:if="{{!hasLogin}}"open-type="getUserInfo" bindgetuserinfo="login">授权登录</button>
+
+<view class="header">
+  <l-avatar wx:if="{{hasLogin}}" open-data="{{['userAvatarUrl','userNickName']}}" />
+  <button wx:if="{{canIUse}}" wx:if="{{!hasLogin}}" open-type="getUserInfo" bindgetuserinfo="login">授权登录</button>
+  <view>
+  </view>
+  <view class="menu-warpper">
+    <l-list title="历史账单"  icon="notification"  />
+  <l-list title="预算清单"  icon="notification" tag-color="#F4516c"/>
+  <l-list title="消费清单" icon="notification" />
+  <l-list title="娱乐" icon="notification" tagShape="circle" tag-position="right"/>
+
+
+  </view>
+
+
+
+</view>

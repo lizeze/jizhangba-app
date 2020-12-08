@@ -31,7 +31,6 @@ const showToast = (options) => {
       options.callback && options.callback(res)
     },
     complete: (res) => {
-      console.log(res)
     }
   })
 }
@@ -61,9 +60,7 @@ const httpRequest = (options) => {
         'content-type': 'application/json', // 默认值,
         "accessToken": getCurrentUser()
       },
-
       complete: function (data) {
-
         if (data.statusCode != 200) {
           showToast({
             title: '失败',
@@ -74,22 +71,16 @@ const httpRequest = (options) => {
           })
         } else {
           resolve(data.data)
-
         }
-
       }
-
     })
   })
 }
-
 const checkSession = () => {
-
   return new Promise((resolve, reject) => {
     wx.checkSession({
       success() {
         resolve(unifyResult())
-
       },
       fail() {
         // session_key 已经失效，需要重新执行登录流程
@@ -97,10 +88,8 @@ const checkSession = () => {
       }
     })
   })
-
 }
 const getLoginInfo = async () => {
-
   let result = {
     data: '',
     error: ''
@@ -109,7 +98,6 @@ const getLoginInfo = async () => {
     wx.login({
       success(res) {
         if (res.code) {
-          console.log(res.code, 'code')
           //发起网络请求
           wx.getSetting({
             success(user) {
@@ -119,7 +107,6 @@ const getLoginInfo = async () => {
                     makeToken({
                       url: apiUrl + 'api/wx/decrypt',
                       // url: apiUrl + 'api/a',
-
                       method: 'POST',
                       data: {
                         encryptedData: res1.encryptedData,
@@ -145,8 +132,6 @@ const getLoginInfo = async () => {
               console.log('登录失败')
             }
           })
-
-
         } else {
           result.error = "登录失败"
           resolve(result)
