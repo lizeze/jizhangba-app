@@ -1,0 +1,7 @@
+<!-- <button  bindtap="login" wx:if="{{hasLogin==false}}">登录</button>
+<l-avatar open-data="{{['userAvatarUrl','userNickName']}}"  wx:if="{{hasLogin}}"/> -->
+
+<view class="header">
+    <button open-type="getUserInfo" bindgetuserinfo="login">授权登录</button>
+
+</view>
