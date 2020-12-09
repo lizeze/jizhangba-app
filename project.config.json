@@ -45,18 +45,24 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
+    "plugin": {
       "list": []
     },
     "game": {
-      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "扫一扫",
+          "pathName": "pages/login/login",
+          "query": "clientId=202012092250116474794",
+          "scene": 1011
+        }
+      ]
     }
   }
 }

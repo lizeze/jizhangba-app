@@ -1,6 +1,6 @@
 let apiUrl = 'https://xx996.cn/jzb/'
 // apiUrl = 'http://localhost:8086/auth/'
-  // apiUrl = 'http://192.168.0.100:3000/'
+  apiUrl = 'http://localhost:3000/'
 let unifyResult = function (status, data, mess) {
   return {
     data: data || null,

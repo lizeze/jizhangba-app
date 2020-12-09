@@ -3,5 +3,5 @@
 
 <view class="header">
     <button open-type="getUserInfo" bindgetuserinfo="login">授权登录</button>
-
+    <!-- <l-toast show="{{true}}" icon="loading" title="成功提示框" /> -->
 </view>
