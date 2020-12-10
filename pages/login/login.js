@@ -23,13 +23,7 @@ Page({
         // console.log(res.detail);
     },
     loginFail: function (res) {
-        console.log(res);
-    },
-    onLoad: function () {
-        wx.setStorage({
-            key: "clientId",
-            data: this.options.clientId
-          })
-       ;
+
     }
+
 })
