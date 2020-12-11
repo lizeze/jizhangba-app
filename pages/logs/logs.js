@@ -26,23 +26,25 @@ Page({
         let result = await util.httpRequest({
             url: 'api/bill/' + '/' + year + "/" + month
         })
-        let sumAmount = 0;
-        let inAmount = 0;
-        let outAmount = 0
-        result.data.map(item => {
+        if (result != "请重新登录") {
+            let sumAmount = 0;
+            let inAmount = 0;
+            let outAmount = 0
+            result.data.map(item => {
 
-            if (item.billType == 'out') {
-                outAmount += parseFloat(item.billAmount)
-            } else {
-                inAmount += parseFloat(item.billAmount)
-            }
-        })
+                if (item.billType == 'out') {
+                    outAmount += parseFloat(item.billAmount)
+                } else {
+                    inAmount += parseFloat(item.billAmount)
+                }
+            })
 
-        this.setData({
-            list: result,
-            inAmount: inAmount.toFixed(2),
-            outAmount: outAmount.toFixed(2)
-        })
-        wx.lin.flushSticky()
+            this.setData({
+                list: result,
+                inAmount: inAmount.toFixed(2),
+                outAmount: outAmount.toFixed(2)
+            })
+            wx.lin.flushSticky()
+        }
     }
 })

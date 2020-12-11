@@ -99,7 +99,6 @@ Page({
             })
             return
         }
-
         const billAmount = this.data.billAmount
         const billRemark = this.data.billRemark;
         const billType = this.data.billType;
@@ -112,20 +111,18 @@ Page({
             billTime,
             billClass
         };
-        await util.httpRequest({
-            // url: 'http://xx996.cn/jzb/api/bill/',
+        let data = await util.httpRequest({
             url: 'api/bill/',
-
             method: 'post',
             data: mod
         })
-        this.setData({
-
-            billRemark: '',
-            billAmount: '',
-            billTime: util.formatTime(new Date)
-        })
-        util.showMessage("保存成功")
-
+        if (data != "请重新登录") {
+            this.setData({
+                billRemark: '',
+                billAmount: '',
+                billTime: util.formatTime(new Date)
+            })
+            util.showMessage("保存成功")
+        }
     }
 })

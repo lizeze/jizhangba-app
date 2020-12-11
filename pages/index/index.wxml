@@ -32,6 +32,6 @@
 </view>
 
 
-<l-message/>
 <l-loading>
 </l-loading>
+<l-message/>

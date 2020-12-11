@@ -1,6 +1,6 @@
 let apiUrl = 'https://xx996.cn/jzb/'
 // apiUrl = 'http://localhost:8086/auth/'
-apiUrl = 'http://localhost:3000/'
+// apiUrl = 'http://localhost:3000/'
 let unifyResult = function (status, data, mess) {
     return {
         data: data || null,
@@ -85,6 +85,7 @@ const failMessage = (response) => {
                 message: '服务异常'
             })
     }
+    throw  new Error(response)
 }
 const getWxUserInfo = async () => {
     return new Promise((resolve, reject) => {
@@ -149,13 +150,20 @@ const getCurrentUser = () => {
     let accessTokenData = wx.getStorageSync('accessToken')
     if (!accessTokenData) {
         showMessage({
-            message: '似乎还没有登录',
-            type: 'warning'
+            message: '似乎还没有登录,3秒之后跳转登录页面',
+            type: 'warning',
+            duration: 4000
         })
-        wx.switchTab({
-            url: '/pages/me/me'
+        wx.setStorage({
+            key: "loginFail",
+            data: true
         })
-        return
+        setTimeout(function () {
+            wx.switchTab({
+                url: '/pages/me/me'
+            })
+        }, 3000)
+        return null
     }
     return accessTokenData
 }
@@ -163,7 +171,8 @@ const showMessage = (options) => {
     if (typeof options === 'object') {
         wx.lin.showMessage({
             type: options.type,
-            content: options.message
+            content: options.message,
+            duration: options.duration ? options.duration : 1500
         })
     } else {
         wx.lin.showMessage({
@@ -181,5 +190,5 @@ module.exports = {
     httpRequest,
     getLoginInfo,
     getCurrentUser,
-    showMessage
+    showMessage, getWxUserInfo
 }

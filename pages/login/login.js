@@ -2,8 +2,9 @@
 const app = getApp()
 let util = require('../../utils/util.js');
 Page({
-    onLoad: function () {
-        const scene = decodeURIComponent(options.query.clientId);
+    onLoad: function (options) {
+        console.log(options);
+        const scene = decodeURIComponent(options.clientId);
         wx.setStorage({
             key: "clientId",
             data: scene

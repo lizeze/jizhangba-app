@@ -12,10 +12,25 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
+    onShow: function () {
+        if (wx.getStorageSync("loginFail")) {
+            this.setData({
+                hasLogin: false
+            })
+            wx.removeStorageSync('loginFail')
+            return
+        }
+    },
     onLoad: async function (options) {
-         console.log('load','me')
+        let _this = this
         if (!wx.getStorageSync('clientId')) {
-            let _this = this
+            if (wx.getStorageSync("loginFail")) {
+                _this.setData({
+                    hasLogin: false
+                })
+                wx.removeStorageSync('loginFail')
+                return
+            }
             await util.getLoginInfo();
             wx.getSetting({
                 success(res) {
