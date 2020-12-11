@@ -1,13 +1,10 @@
 {
   "pages": [
-    "pages/me/me",
     "pages/index/index",
     "pages/logs/logs",
+    "pages/me/me",
     "pages/login/login"
-
-
   ],
-
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -50,12 +47,14 @@
     "l-icon": "/dist/icon/index",
     "l-toast": "/dist/toast/index",
     "l-avatar": "/dist/avatar/index",
-    "l-icon-font":"/component/iconfont/index",
-    "l-list":"/dist/list/index",
-    "l-card":"/dist/card/index",
-    "l-message":"/dist/message/index",
-    "l-sticky":"/dist/sticky/index",
-    "l-sticky-item":"/dist/sticky-item/index"
-
+    "l-icon-font": "/component/iconfont/index",
+    "l-list": "/dist/list/index",
+    "l-card": "/dist/card/index",
+    "l-message": "/dist/message/index",
+    "l-sticky": "/dist/sticky/index",
+    "l-sticky-item": "/dist/sticky-item/index",
+    "lin-loading": "/dist/loading/index",
+    "l-loading": "/component/loading/loading",
+    "l-status-show": "/dist/status-show/index"
   }
 }

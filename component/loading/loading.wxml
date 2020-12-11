@@ -1,0 +1,5 @@
+<view class="loading">
+    <lin-loading type="flash">
+
+    </lin-loading>
+</view>

@@ -1,29 +1,37 @@
-<view class="container">
-  <view class="header">
-    <button  data-type="out" class="{{billType=='out'?'active':''}}" bindtap="changeCurrentType">支出</button>
-    <button  data-type="in" class="{{billType=='in'?'active':''}}" bindtap="changeCurrentType">收入</button>
-  </view>
-  <view class="billform">
-      <l-input   rules="{{billAmountRules}}"  value="{{billAmount}}"  placeholder="请输入金额"  bind:linblur='handleAmountChange'  />
+<view>
+    <view class="container">
+        <view class="header">
+            <button data-type="out" class="{{billType=='out'?'active':''}}" bindtap="changeCurrentType">支出</button>
+            <button data-type="in" class="{{billType=='in'?'active':''}}" bindtap="changeCurrentType">收入</button>
+        </view>
+        <view class="billform">
+            <l-input rules="{{billAmountRules}}" value="{{billAmount}}" placeholder="请输入金额"
+                     bind:linblur='handleAmountChange'/>
 
-      <l-input model:value="{{ billRemark }}" type="text" title="备注" placeholder="请输入备注" maxlength="20"   bind:linblur='handleRemarkChange' />
-    <picker mode="date" value="{{time}}" bindchange="bindPickerChange">
-      <view class="picker">
-        <l-input value="{{ billTime }}"   disabled="{{true}}"   placeholder="请选择日期" />
-      </view>
-    </picker>
-  </view>
-  <l-grid l-class="grid" show-border="{{true}}" bind:lintap="lintap" >
-    <l-grid-item
-      wx:for="{{grids1}}"  wx:key="{{item.icon}}"  key="{{item.icon}}"  cell="{{item}}"  class="{{billClass==item.text?'grid-list':''}}" slot="{{item.icon}}" >
-       <l-icon-font icon="{{item.icon}}"></l-icon-font>
-        <view class="text">{{item.text}}</view>
-    </l-grid-item>
-   </l-grid>
-  
+            <l-input model:value="{{ billRemark }}" type="text" title="备注" placeholder="请输入备注" maxlength="20"
+                     bind:linblur='handleRemarkChange'/>
+            <picker mode="date" value="{{time}}" bindchange="bindPickerChange">
+                <view class="picker">
+                    <l-input value="{{ billTime }}" disabled="{{true}}" placeholder="请选择日期"/>
+                </view>
+            </picker>
+        </view>
+        <l-grid l-class="grid" show-border="{{true}}" bind:lintap="lintap">
+            <l-grid-item
+                    wx:for="{{grids1}}" wx:key="{{item.icon}}" key="{{item.icon}}" cell="{{item}}"
+                    class="{{billClass==item.text?'grid-list':''}}" slot="{{item.icon}}">
+                <l-icon-font icon="{{item.icon}}"></l-icon-font>
+                <view class="text">{{item.text}}</view>
+            </l-grid-item>
+        </l-grid>
+
+    </view>
+    <view class="footer">
+        <button bindtap="saveData">确认</button>
+    </view>
 </view>
-<view class="footer">
-<button bindtap="saveData">确认</button>
-</view>
-<l-message />
-<l-toast />
+
+
+<l-message/>
+<l-loading>
+</l-loading>

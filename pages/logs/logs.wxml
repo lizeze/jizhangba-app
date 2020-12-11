@@ -1,4 +1,4 @@
-<wxs src="../../utils/filter.wxs" module="filter" />
+<wxs src="../../utils/filter.wxs" module="filter"/>
 
 <view class="bill-container">
     <!-- <view class="bill-date">
@@ -27,10 +27,12 @@
             <view slot="body">
                 <view class="bill-warpper">
                     <view class="bill-item" wx:for="{{list.data}}">
-                        <view class="date">{{item.billRemark?item.billRemark:item.billClass}}</view>
+                        <view class="date">{{item.billRemark ? item.billRemark : item.billClass}}</view>
                         <view class="content">
-                            <view class="title"> {{filter.format(item.billTime,'YY-MM-DD')}}</view>
-                            <view class="amount {{item.billType=='out'?'out':'in'}}">￥{{filter.toFixed(item.billAmount)}}</view>
+                            <view class="title">{{filter.format(item.billTime, 'YY-MM-DD')}}</view>
+                            <view class="amount {{item.billType=='out'?'out':'in'}}">
+                                ￥{{filter.toFixed(item.billAmount)}}
+                            </view>
                         </view>
                     </view>
                 </view>
@@ -38,3 +40,7 @@
         </l-sticky-item>
     </l-sticky>
 </view>
+<l-loading>
+</l-loading>
+<l-message/>
+
