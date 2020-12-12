@@ -71,6 +71,7 @@ const httpRequest = (options) => {
     })
 }
 const failMessage = (response) => {
+console.log(response)
     switch (response.statusCode) {
         case 403:
             showMessage({

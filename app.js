@@ -8,6 +8,10 @@ App({
         // }
 
     },
+    onError (msg) {
+        console.log("1222")
+        console.log(msg)
+      },
     globalData: {
         hasLogin: false
     }

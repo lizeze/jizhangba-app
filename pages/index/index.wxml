@@ -8,7 +8,7 @@
             <l-input rules="{{billAmountRules}}" value="{{billAmount}}" placeholder="请输入金额"
                      bind:linblur='handleAmountChange'/>
 
-            <l-input model:value="{{ billRemark }}" type="text" title="备注" placeholder="请输入备注" maxlength="20"
+            <l-input model:value="{{ billRemark }}" type="text" title="备注" placeholder="请输入备注(最长10个字符)" maxlength="10"
                      bind:linblur='handleRemarkChange'/>
             <picker mode="date" value="{{time}}" bindchange="bindPickerChange">
                 <view class="picker">
