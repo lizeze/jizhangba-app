@@ -77,10 +77,10 @@ Page({
         if (isNaN(value)) {
             value = ''
             util.showMessage({
-                message:'请输入正确的数字',
-                type:'warning'
+                message: '请输入正确的数字',
+                type: 'warning'
             })
-            
+
         }
         this.setData({
             billAmount: value
@@ -95,8 +95,8 @@ Page({
     saveData: async function () {
         if (!this.data.billAmount) {
             util.showMessage({
-                message:'金额不能为空',
-                type:'warning'
+                message: '金额不能为空',
+                type: 'warning'
             })
             return
         }
@@ -118,21 +118,13 @@ Page({
             data: mod
         })
 
-         if(data.error_code==0){
-            this.setData({
-                billRemark: '',
-                billAmount: '',
-                billTime: util.formatTime(new Date)
-            })
-            util.showMessage("保存成功")
-         
-         }else{
-             util.showMessage({
-                 message:data.mess,
-                 type:'error'
-             })
-         }
-         
-            
+        this.setData({
+            billRemark: '',
+            billAmount: '',
+            billTime: util.formatTime(new Date)
+        })
+        util.showMessage("保存成功")
+
+
     }
 })

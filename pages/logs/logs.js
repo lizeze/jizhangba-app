@@ -6,7 +6,34 @@ Page({
         list: {},
         scrollTop: undefined,
         inAmount: '',
-        outAmount: ''
+        outAmount: '',
+        show: false,
+
+    },
+    showActionSheet() {
+        wx.lin.showActionSheet({
+            title:'223efe',
+            itemList: [{
+                name: '今日不再出现此类内容'
+            },
+                {
+                    name: '屏蔽'
+                }
+            ], showCancel: true, cancelText: '22',
+            success: function (e) {
+            },fail:function (e){
+                 console.log('取消了')
+            }
+        })
+    },
+    lincancel() {
+        console.log('取消')
+    },
+
+    lintapItem(e) {
+
+
+        console.log(e.detail.item.name)
     },
     onPageScroll(res) {
         wx.lin.setScrollTop(res.scrollTop)
@@ -15,6 +42,7 @@ Page({
 
         this.initData()
     },
+
     onLoad: async function () {
 
         // this.initData()

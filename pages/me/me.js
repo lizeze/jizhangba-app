@@ -22,6 +22,7 @@ Page({
         }
     },
     onLoad: async function (options) {
+         this.getLocation()
         let _this = this
         if (!wx.getStorageSync('clientId')) {
             if (wx.getStorageSync("loginFail")) {
@@ -74,5 +75,24 @@ Page({
     },
     loginFail: function (res) {
         console.log(res);
+    },
+    getLocation: function () {
+        wx.authorize({
+            scope: 'scope.userLocation',
+            success () {
+                wx.getLocation({
+                    type: 'wgs84',
+                    success(res) {
+                        const latitude = res.latitude
+                        const longitude = res.longitude
+                        const speed = res.speed
+                        const accuracy = res.accuracy
+                        console.log(res)
+                    }
+                })
+            }
+        })
+
+
     }
 })

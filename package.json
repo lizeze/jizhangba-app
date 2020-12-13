@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lizeze/jizhangba-app#readme",
   "dependencies": {
-    "lin-ui": "^0.8.13"
+    "lin-ui": "^0.8.13",
+    "weui-miniprogram": "^1.0.6"
   }
 }

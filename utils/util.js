@@ -43,7 +43,8 @@ const makeToken = (options) => {
             fail: failMessage,
             success: function (res) {
                 resolve(res.data)
-            }, complete: function (data) {
+            },
+            complete: function (data) {
                 wx.lin.hideLoading()
             }
         })
@@ -60,24 +61,32 @@ const httpRequest = (options) => {
                 'content-type': 'application/json', // 默认值,
                 "accessToken": getCurrentUser()
             },
-            fail: failMessage,
+        //    fail: failMessage,
             success(res) {
-                resolve(res.data)
+                //resolve(res.data)
             },
-            complete: function () {
+            complete: function (res) {
+                 console.log('关闭')
                 wx.lin.hideLoading()
+                if (res.statusCode != 200) {
+                    failMessage(res)
+                } else {
+                    resolve(res.data)
+                }
             }
         })
     })
 }
 const failMessage = (response) => {
-console.log(response)
+    console.log(response)
     switch (response.statusCode) {
         case 403:
             showMessage({
                 type: "warning",
                 message: '授权过期,请重新登录'
             })
+
+            wx.setStorageSync('loginFail', true)
             break;
         case 500:
         default:
@@ -85,8 +94,9 @@ console.log(response)
                 type: "error",
                 message: '服务异常'
             })
+            break;
     }
-    throw  new Error(response)
+    throw new Error(JSON.stringify(response))
 }
 const getWxUserInfo = async () => {
     return new Promise((resolve, reject) => {
@@ -191,5 +201,6 @@ module.exports = {
     httpRequest,
     getLoginInfo,
     getCurrentUser,
-    showMessage, getWxUserInfo
+    showMessage,
+    getWxUserInfo
 }
