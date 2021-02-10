@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/me/me",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/history/history"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,11 +37,6 @@
       }
     ]
   },
-  "permission": {
-    "scope.userLocation": {
-      "desc":"只用于查询当地天气情况"
-    }
-  },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
@@ -62,8 +58,6 @@
     "l-loading": "/component/loading/loading",
     "l-status-show": "/dist/status-show/index",
     "l-slide-view": "/dist/slide-view/index",
-    "l-action-sheet": "/dist/action-sheet/index",
-    "i-action-sheet": "/iview/dist/action-sheet/index"
-   
+    "l-action-sheet": "/dist/action-sheet/index"
   }
 }

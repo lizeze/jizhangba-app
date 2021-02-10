@@ -77,22 +77,10 @@ Page({
         console.log(res);
     },
     getLocation: function () {
-        wx.authorize({
-            scope: 'scope.userLocation',
-            success () {
-                wx.getLocation({
-                    type: 'wgs84',
-                    success(res) {
-                        const latitude = res.latitude
-                        const longitude = res.longitude
-                        const speed = res.speed
-                        const accuracy = res.accuracy
-                        console.log(res)
-                    }
-                })
-            }
+    },
+    historyHandle:function(){
+        wx.navigateTo({
+            url: '/pages/history/history?id=1',
         })
-
-
     }
 })
