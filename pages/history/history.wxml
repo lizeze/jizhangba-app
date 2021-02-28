@@ -1,2 +1,27 @@
-<!--pages/history/history.wxml-->
-<text>pages/history/history.wxml</text>
+<view class="history-warpper">
+  <view class="header">
+    <view class="sum-warpper">
+
+      <view>23344=212121-45</view>
+    </view>
+    <view>
+
+
+    </view>
+  </view>
+
+  <view class="tool-bar">
+
+    <button>上月</button>
+    <button>本月</button>
+    <button>下月</button>
+
+  </view>
+  <view class="tool-bar">
+
+    <button>上年</button>
+    <button>本年</button>
+    <button>下年</button>
+
+  </view>
+</view>

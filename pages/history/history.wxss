@@ -1,1 +1,39 @@
-/* pages/history/history.wxss */
+.history-warpper {
+  padding: 6px;
+}
+
+.history-warpper .header {
+  background: #f09496;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.history-warpper .header .sum-warpper {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-warpper .header .sum-warpper .item {
+
+  margin: 0 10px;
+
+}
+
+.history-warpper .header .sum-warpper .item view {
+
+  margin-top: 3%;
+  font-size: 12px;
+
+}
+
+.history-warpper .tool-bar{
+
+  display: flex;
+
+}
+.history-warpper .tool-bar button{
+  margin: 4px;
+  background:#2783D3;
+  color:white;
+}
